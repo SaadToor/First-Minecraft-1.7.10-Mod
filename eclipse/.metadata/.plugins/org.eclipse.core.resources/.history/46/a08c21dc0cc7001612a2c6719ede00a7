@@ -1,0 +1,5 @@
+item.ItemTable.name=Table
+item.ItemCheese.name=Cheese
+item.ItemGrilledCheese.name=Grilled Cheese
+itemGroup.tabTestMod.name=Test Mods
+tile.BlockTable.name=Table

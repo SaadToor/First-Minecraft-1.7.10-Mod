@@ -1,0 +1,116 @@
+package tdoubleking.test;
+
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.EnumHelper;
+import tdoubleking.test.item.ItemCheeseAxe;
+import tdoubleking.test.item.ItemCheesePickaxe;
+import tdoubleking.test.item.ItemCheeseShovel;
+import tdoubleking.test.item.ItemCheeseStick;
+import tdoubleking.test.item.itemCheeseHoe;
+import tdoubleking.test.item.itemCheeseSword;
+
+//Define the class for forge to load up
+@Mod(modid = "tm", name = "Test Mod", version = "1.0")
+public class TestMod {
+	
+	public static Item itemTable;		
+	public static Block blockTable;
+	public static Item itemCheese;
+	public static Item itemGrilledCheese;
+	public static Item cheesePickaxe;
+	public static Item cheeseAxe;
+	public static Item cheeseShovel;
+	public static Item cheeseHoe;
+	public static Item cheeseSword;
+	public static Item itemCheeseStick;
+	
+	// Define the strength of the tool   												  Name, Harvest level, max uses, effieciency, damage, enchantablilty
+	public static final Item.ToolMaterial cheeseToolMaterial = EnumHelper.addToolMaterial("cheeseToolMaterial", 4, 2048, 120.0F, 5.0F, 30);
+	
+	// Initialize the items and blocks, register them
+	@EventHandler
+	public void preInit(FMLPreInitializationEvent event){
+		/* Item/Block initialization and registering 
+		 * Configuration handling */
+		
+		// Create and register the item
+		/*setUnlocalizedName("ItemTable") set the name of the item
+		 *setTextureName("tm:itemtable") set the name with modid : and the name of the picture file */
+		itemTable = new ItemTable().setUnlocalizedName("ItemTable").setTextureName("tm:itemtable").setCreativeTab(tabTestMod); // item.itemTable
+		itemCheeseStick = new ItemCheeseStick().setUnlocalizedName("ItemCheeseStick").setTextureName("tm:itemcheesestick").setCreativeTab(tabTestMod);
+		
+		// Material. makes the noise of that item breaking, ie. cloth will make a wool breaking noise
+		blockTable = new BlockTable(Material.rock).setBlockName("BlockTable").setBlockTextureName("tm:blocktable").setCreativeTab(tabTestMod);
+		
+		// food calculations
+		// X is the number from the coder, Max is 20: X * 0.5 = ? hunger
+		// First parm is the amount of hunger repaired
+		// Second parm Saturation -> time after eating the food
+		// Third Food can be consumed by wolf
+		itemCheese = new ItemFood(8, 0.4F, false).setUnlocalizedName("ItemCheese").setTextureName("tm:cheese").setCreativeTab(tabTestMod);
+		itemGrilledCheese = new ItemFood(16, 0.6F, true).setUnlocalizedName("ItemGrilledCheese").setTextureName("tm:grilledcheese").setCreativeTab(tabTestMod);
+		
+		//Creating tools
+		cheesePickaxe = new ItemCheesePickaxe(cheeseToolMaterial).setUnlocalizedName("ItemCheesePickaxe").setTextureName("tm:itemcheesepickaxe").setCreativeTab(tabTestMod);
+		cheeseAxe = new ItemCheeseAxe(cheeseToolMaterial).setUnlocalizedName("ItemCheeseAxe").setTextureName("tm:itemcheeseaxe").setCreativeTab(tabTestMod);
+		cheeseShovel = new ItemCheeseShovel(cheeseToolMaterial).setUnlocalizedName("ItemCheeseShovel").setTextureName("tm:itemcheeseshovel").setCreativeTab(tabTestMod);
+		cheeseHoe = new itemCheeseHoe(cheeseToolMaterial).setUnlocalizedName("ItemCheeseHoe").setTextureName("tm:itemcheesehoe").setCreativeTab(tabTestMod);
+		cheeseSword = new itemCheeseSword(cheeseToolMaterial).setUnlocalizedName("ItemCheeseSword").setTextureName("tm:itemcheesesword").setCreativeTab(tabTestMod);
+		
+		// Register the Items / Blocks
+		GameRegistry.registerItem(itemTable, itemTable.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(blockTable, blockTable.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemCheese, itemCheese.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemGrilledCheese, itemGrilledCheese.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(cheesePickaxe, cheesePickaxe.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(cheeseAxe, cheeseAxe.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(cheeseShovel, cheeseShovel.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(cheeseHoe, cheeseHoe.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(cheeseSword, cheeseSword.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemCheeseStick, itemCheeseStick.getUnlocalizedName().substring(5));
+		
+		// Allow food smeltry
+		GameRegistry.addSmelting(itemCheese, new ItemStack(itemGrilledCheese, 2), 2.5F);
+	}
+	
+	@EventHandler
+	public void init(FMLInitializationEvent event){
+		// Proxy, TileEntity, Entity, GUI and Pack Registering
+		// Adding crafting recipes
+		// Each quote is one row in the crafting GUI                  Use any letter for the crafting recipe
+		GameRegistry.addRecipe(new ItemStack(itemTable, 2), new Object[]{"WWW","W W", "W W", 'W', Blocks.planks});// Can use items or blocks
+		GameRegistry.addRecipe(new ItemStack(blockTable, 2), new Object[]{"CRC", "RRR", "CRC", 'C', Blocks.coal_block, 'R', Items.redstone});
+		GameRegistry.addRecipe(new ItemStack(cheesePickaxe), new Object[]{"QQQ"," S "," S ", 'Q', itemCheese, 'S', itemCheeseStick});
+		GameRegistry.addRecipe(new ItemStack(cheeseAxe), new Object[]{"QQ","QS"," S", 'Q', itemCheese, 'S', itemCheeseStick});
+		GameRegistry.addRecipe(new ItemStack(cheeseShovel), new Object[]{"Q","S","S", 'Q', itemCheese, 'S', itemCheeseStick});
+		GameRegistry.addRecipe(new ItemStack(cheeseHoe), new Object[]{"QQ"," S"," S", 'Q', itemCheese, 'S', itemCheeseStick});
+		GameRegistry.addRecipe(new ItemStack(cheeseSword), new Object[]{"Q","Q","S", 'Q', itemCheese, 'S', itemCheeseStick});
+		GameRegistry.addRecipe(new ItemStack(cheeseSword), new Object[]{"Q","Q","S", 'Q', itemCheese, 'S', itemCheeseStick});
+	}
+	
+	public void postInit(FMLPostInitializationEvent event){
+		// List of blocks/items registered in preInit
+		
+	}
+	
+	// Creating a creative tab for the items to apear in the creative GUI
+	public static CreativeTabs tabTestMod = new CreativeTabs("tabTestMod"){
+		@Override
+		public Item getTabIconItem(){
+			return new ItemStack(itemCheese).getItem();
+		}
+	};
+}

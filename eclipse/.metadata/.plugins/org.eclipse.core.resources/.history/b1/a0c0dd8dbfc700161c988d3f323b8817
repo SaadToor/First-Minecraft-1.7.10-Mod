@@ -1,0 +1,15 @@
+package tdoubleking.test.item;
+
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemArmor.ArmorMaterial;
+
+public class ItemCheeseArmor extends ItemArmor {
+
+	public ItemCheeseArmor(ArmorMaterial armourMaterial, int renderIndx, int armourType) {
+		super(armourMaterial, renderIndx, armourType);
+	}
+	
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type){
+		
+	}
+}

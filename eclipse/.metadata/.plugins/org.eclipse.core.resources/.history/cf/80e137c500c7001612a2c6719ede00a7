@@ -1,0 +1,7 @@
+package tdoubleking.test;
+
+import net.minecraft.block.Block;
+
+public class BlockTable extends Block {
+
+}

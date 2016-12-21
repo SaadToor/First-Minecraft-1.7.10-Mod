@@ -1,0 +1,13 @@
+item.ItemTable.name=Table
+item.ItemCheese.name=Cheese
+item.ItemCheeseStick.name=Cheese Stick
+item.ItemGrilledCheese.name=Grilled Cheese
+item.ItemCheesePickaxe.name=Cheese Pickaxe
+item.ItemCheeseAxe.name=Cheese Axe
+item.ItemCheeseShovel.name=Cheese Shovel
+item.ItemCheeseHoe.name=Cheese Hoe
+item.ItemCheeseSword.name=Cheese Sword
+
+tile.BlockTable.name=Table
+
+itemGroup.tabTestMod=Test Mod's

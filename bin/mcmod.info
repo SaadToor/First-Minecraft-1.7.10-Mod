@@ -1,0 +1,16 @@
+[
+{
+  "modid": "tm",
+  "name": "Cheese Mod",
+  "description": "Just a fun and test mod, adding in various cheese items.",
+  "version": "1.0",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["TDoubleAKing"],
+  "credits": "Thank you TDubs for the Mod",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

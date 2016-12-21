@@ -1,0 +1,7 @@
+package tdoubleking.test.item;
+
+import net.minecraft.item.ItemArmor;
+
+public class ItemCheeseArmor extends ItemArmor {
+
+}

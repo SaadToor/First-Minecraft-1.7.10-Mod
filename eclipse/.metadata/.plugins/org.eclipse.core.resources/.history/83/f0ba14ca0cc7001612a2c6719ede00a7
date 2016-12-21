@@ -1,0 +1,5 @@
+item.ItemTable.name=Table
+item.ItemCheese.name=Cheese
+item.ItemGrilledCheese.name=Grilled Cheese
+
+tile.BlockTable.name=Table
